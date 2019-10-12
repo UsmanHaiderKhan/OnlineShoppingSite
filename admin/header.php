@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -56,7 +57,10 @@
                         <img src="img/img-profile.jpg" alt="Profile Pic" /></div>
                     <div class="floatleft marginleft10">
                         <ul class="inline-ul floatleft">
-                            <li>Hello Admin</li>
+                            <li>Hello <?php
+
+                                echo $_SESSION['admin'];
+                                ?></li>
                           
                             <li><a href="logout.php">Logout</a></li>
                         </ul>
