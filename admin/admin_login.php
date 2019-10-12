@@ -1,11 +1,11 @@
  <?php require_once "connection.php" ?>
  <?php 
  session_start();
- if (isset($_POST["submit"])) {
+ if (isset($_POST["submit1"])) {
     
      $email=trim($_POST['email']);
      $password=trim($_POST['password']);
-     $sql="select * from users where email='$email' AND password='$password' ";
+     $sql="select * from users where email='$email' AND password='$password'";
      $statement=$conn->prepare($sql);
      $result=$statement->execute( array(  
         'email'     =>    $email,  
@@ -13,7 +13,14 @@
    )  );
     
      if ($statement->rowCount() > 0) {
-		 $_SESSION['admin']=$result['username'];
+		 $sqls="select username from users";
+         $statements=$conn->prepare($sqls);
+         $statements->execute();
+         foreach ($statements as $value){
+            $username=$value["username"];
+            $_SESSION['admin']=$username;
+         }
+
          ?>
         <script>
            window.location="dashboard.php";
@@ -39,7 +46,28 @@ echo "some thing going wrong";
 <h2>Users Entrance</h2>
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="#">
+        <?php
+        if (isset($_POST["submit"]))
+         {
+             echo "yes";
+            $username=trim($_POST["name"]);
+            $email=trim($_POST["email"]);
+            $password=trim($_POST["password"]);
+
+            $insertQuery="insert into users(username,email,password) VALUES ('$username','$email','$password')";
+            $statement=$conn->prepare($insertQuery);
+            $result=$statement->execute();
+                   if ($result)
+                   {
+                       echo "Data Inserted Successfully";
+                   }
+                   else{
+                       echo "Some Thing Went Going Wrong...!";
+                   }
+         }
+
+        ?>
+		<form  action="admin_login.php" method="post" name="register-form">
 			<h1>Create Account</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fa fa-facebook"></i></a>
@@ -47,10 +75,10 @@ echo "some thing going wrong";
 				<a href="#" class="social"><i class="fa fa-linkedin"></i></a>
 			</div>
 			<span>or use your email for registration</span>
-			<input type="text" placeholder="Name" name="name"/>
-			<input type="email" placeholder="Email" name="email"/>
-			<input type="password" placeholder="Password" name="password"/>
-			<button>Sign Up</button>
+                <input type="text" placeholder="Name" name="name"/>
+                <input type="email" placeholder="Email" name="email"/>
+                <input type="password" placeholder="Password" name="password"/>
+                <button type="submit" name="submit">Sign Up</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
@@ -65,7 +93,7 @@ echo "some thing going wrong";
 			<input type="email" placeholder="Email" name="email"/>
 			<input type="password" placeholder="Password" name="password"/>
 			<a href="#">Forgot your password?</a>
-			<button name="submit">Sign In</button>
+			<button name="submit1">Sign In</button>
 		</form>
 	</div>
 	<div class="overlay-container">
