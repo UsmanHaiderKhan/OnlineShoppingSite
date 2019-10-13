@@ -2,7 +2,7 @@
 session_start();
 include "./header.php";
 
-if ($_SESSION['admin'] == " ") {
+if ($_SESSION['admin'] == "") {
     ?>
     <script>
     window.location="admin_login.php";
