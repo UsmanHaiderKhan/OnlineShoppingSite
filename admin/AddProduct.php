@@ -72,6 +72,8 @@ if ($_SESSION['admin'] == " ") {
                   <select class="form-control" name="category">
                       <option> Jeans </option>
                       <option> Shirts </option>
+                      <option> Shoes </option>
+                      <option> Frock  </option>
                       <option> Pent Coat </option>
                   </select>
                 </div>
