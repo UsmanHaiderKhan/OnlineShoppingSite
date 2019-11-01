@@ -29,12 +29,11 @@ if ($_SESSION['admin'] == "") {
           $dst_image="product_image/".$r3.$fname;
          
           move_uploaded_file($_FILES['image']['tmp_name'],$dst);
-
-          
-          $category=trim($_POST['category']);
+          $category_name=$_POST['category'];
+          echo  $category_name;
           $description=trim($_POST['description']);
-         $sql="insert into product (product_name,product_price,product_qty,product_image,product_category,description)
-          VALUES('$name','$price','$qty','$dst_image','$category','$description')";
+          $sql="insert into products(product_name,product_price,product_qty,product_category,product_image,description)
+          VALUES('$name','$price','$qty','$category_name','$dst_image','$description')";
           $statement=$conn->prepare($sql);
           $result=$statement->execute();
           if ($result) {
@@ -46,7 +45,7 @@ if ($_SESSION['admin'] == "") {
 
      }
 ?>
-<link rel="stylesheet" href="./css/form.css">
+<link rel="stylesheet" href="assets/css/form.css">
       
         <div class="grid_10">
             <div class="box round first">
@@ -69,12 +68,25 @@ if ($_SESSION['admin'] == "") {
                 </div>
 
                 <div class="form-group">
+
                   <select class="form-control" name="category">
-                      <option> Jeans </option>
-                      <option> Shirts </option>
-                      <option> Shoes </option>
-                      <option> Frock  </option>
-                      <option> Pent Coat </option>
+                      <?php
+                      $category="select * from category";
+                      $statement=$conn->prepare($category);
+                      $result=$statement->execute();
+                      if ($result)
+                      {
+                          foreach ($statement as $value)
+                          {
+                              $category=$value["name"];
+                              ?>
+                              <option> <?php  echo $category; ?></option>
+                              <?php
+                          }
+                      }else{
+                          echo "Some thing Going Wrong";
+                      }
+                      ?>
                   </select>
                 </div>
 

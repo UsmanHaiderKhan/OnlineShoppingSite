@@ -30,7 +30,7 @@
          }
      }
     ?>
-    <link rel="stylesheet" href="./css/form.css">
+    <link rel="stylesheet" href="assets/css/form.css">
 
     <div class="grid_10">
         <div class="box round first">

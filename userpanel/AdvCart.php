@@ -43,19 +43,59 @@ if (isset($_POST["add"])) {
     </div>
 
 
-    <div class="container">
+    <div id="display" class="container">
         <div class="row text-center py-5">
-            <?php
-            $sql = "select * from product";
-            $statement = $conn->prepare($sql);
-            $result = $statement->execute();
-            if ($result) {
-                foreach ($statement as $value) {
-                    component($value["product_name"], $value["product_price"], $value["product_image"], $value["id"]);
-                }
-            }
-            ?>
+            <div class="col-md-3 my-md-0 p-2">
+                <div class="list-group">
+                    <p class="list-group-item active">Product Categories</p>
+                    <?php
+                    $sql = "select * from category";
+                    $statement = $conn->prepare($sql);
+                    $result = $statement->execute();
+                    if ($result) {
+                        foreach ($statement as $value) {
+                            ?>
+                            <a href="AdvCart.php?name=<?php echo $value["name"]; ?>#display"
+                               class="list-group-item list-group-item-action">
+                                <?php echo $value['name']; ?>
+                            </a>
+                            <?php
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <?php
+
+
+                    if (isset($_GET["name"])) {
+                        $urlname = $_GET["name"];
+                        $sql = "select * from products where product_category='$urlname'";
+                        $statement = $conn->prepare($sql);
+                        $result = $statement->execute();
+                        if ($result) {
+                            foreach ($statement as $value) {
+                                component($value["product_name"], $value["product_price"],
+                                    $value["product_image"], $value["id"]);
+                            }
+                        }
+                    } else {
+                        $sql = "select * from products";
+                        $statement = $conn->prepare($sql);
+                        $result = $statement->execute();
+                        if ($result) {
+                            foreach ($statement as $value) {
+                                component($value["product_name"], $value["product_price"],
+                                    $value["product_image"], $value["id"]);
+                            }
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
-<?php require_once "gallery.php"?>
+<?php require_once "gallery.php" ?>
 <?php require_once "footer.php"; ?>

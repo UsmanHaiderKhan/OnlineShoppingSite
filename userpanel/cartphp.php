@@ -19,8 +19,6 @@ require_once './function.php';
                }
            }
     ?>
-
-
 <?php
 require_once "topbar.php";
 ?>
@@ -34,14 +32,15 @@ require_once "topbar.php";
                 $total=0;
                 if (isset($_SESSION['cart'])) {
                     $productid = array_column($_SESSION['cart'], "productid");
-                    $sql = "select * from product";
+                    $sql = "select * from products";
                     $statement = $conn->prepare($sql);
                     $result = $statement->execute();
                     if ($result) {
                         foreach ($statement as $value) {
                             foreach ($productid as $id) {
                                 if ($value['id'] == $id) {
-                                    cartProduct($value["product_image"], $value['product_name'], $value["product_price"],$value["id"]);
+                                    cartProduct($value["product_image"], $value['product_name'],
+                                                  $value["product_price"],$value["id"]);
                                    $total=$total+ (int)$value['product_price'];
                                 }
                             }
@@ -78,13 +77,13 @@ require_once "topbar.php";
                         <h6>Amount Payable</h6>
                     </div>
                     <div class="col-md-6">
-                           <h6><?php echo  $total;?>Rs-/</h6>
+                           <h6>Rs <?php echo  $total;?>/-</h6>
                         <h6 class="text-success">FREE</h6>
                         <hr>
                         <h6>
-                            <?php
+                            Rs <?php
                             echo  $total;
-                            ?>Rs-/
+                            ?>/-
                         </h6>
                     </div>
 

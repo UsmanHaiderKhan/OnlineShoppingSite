@@ -1,100 +1,107 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>ShoppingSite | Admin Panel</title>
-    <link rel="apple-touch-icon" sizes="57x57" href="./img/favicon/android-icon-48x48.png">
-    <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/text.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/grid.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/nav.css" media="screen" />
-    <!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css" media="screen" /><![endif]-->
-    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
-    <!-- BEGIN: load jquery -->
-    <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/jquery-ui/jquery.ui.core.min.js"></script>
-    <script src="js/jquery-ui/jquery.ui.widget.min.js" type="text/javascript"></script>
-    <script src="js/jquery-ui/jquery.ui.accordion.min.js" type="text/javascript"></script>
-    <script src="js/jquery-ui/jquery.effects.core.min.js" type="text/javascript"></script>
-    <script src="js/jquery-ui/jquery.effects.slide.min.js" type="text/javascript"></script>
-    <!-- END: load jquery -->
-    <!-- BEGIN: load jqplot -->
-    <link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css" />
-    <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/jqPlot/excanvas.min.js"></script><![endif]-->
-    <script language="javascript" type="text/javascript" src="js/jqPlot/jquery.jqplot.min.js"></script>
-    <script language="javascript" type="text/javascript" src="js/jqPlot/plugins/jqplot.barRenderer.min.js"></script>
-    <script language="javascript" type="text/javascript" src="js/jqPlot/plugins/jqplot.pieRenderer.min.js"></script>
-    <script language="javascript" type="text/javascript"
-        src="js/jqPlot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
-    <script language="javascript" type="text/javascript" src="js/jqPlot/plugins/jqplot.highlighter.min.js"></script>
-    <script language="javascript" type="text/javascript" src="js/jqPlot/plugins/jqplot.pointLabels.min.js"></script>
-    <!-- END: load jqplot -->
-    <script src="js/setup.js" type="text/javascript"></script>
-    <script type="text/javascript">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600,700|Raleway:400,500,600,700,800&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-        $(document).ready(function () {
-            setupDashboardChart('chart1');
-            setupLeftMenu();
-            setSidebarHeight();
-
-
-        });
-    </script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Shopping | Cart</title>
 </head>
+<body class="bg-light">
+<header id="header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="opacity: .98">
+        <div class="container">
+            <a class="navbar-brand" href="AdvCart.php">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-<body>
-    <div class="container_12">
-        <div class="grid_12 header-repeat">
-            <div id="branding">
-                <div class="floatleft">
-                  <h3 style="color:white">Admin Panel</h3>
-                </div>
-                <div class="floatright">
-                    <div class="floatleft">
-                        <img src="img/img-profile.jpg" alt="Profile Pic" /></div>
-                    <div class="floatleft marginleft10">
-                        <ul class="inline-ul floatleft">
-                            <li>Hello <?php
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#clothes">Clothes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#clothes">MEN'S</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Contact us</a>
+                    </li>
 
-                                echo $_SESSION['admin'];
-                                ?></li>
-                          
-                            <li><a href="logout.php">Logout</a></li>
-                        </ul>
-                        <br />
-                        <span class="small grey">Last Login: 3 hours ago</span>
-                    </div>
-                </div>
-                <div class="clear">
-                </div>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="cartphp.php"> Cart
+                            <?php
+                            if (isset($_SESSION["cart"])) {
+                                $count = count($_SESSION['cart']);
+                                echo "
+                                  <span class=\"p1 fa-stack fa-lg has-badge\" data-count=\"$count\">
+                                 
+                                    <i class=\"p3 fa fa-shopping-cart fa-stack-1x xfa-inverse\" data-count=\"\"></i>
+                                  </span>
+                                ";
+                            } else {
+                                echo "
+                                  <span class=\"p1 fa-stack fa-lg has-badge\" data-count=\"0\">
+                                 
+                                    <i class=\"p3 fa fa-shopping-cart fa-stack-1x xfa-inverse\" data-count=\"0b\"></i>
+                                  </span>
+                                ";
+                            }
+                            ?>
+                        </a>
+                    </li>
+
+                    <?php
+                    if (empty($_SESSION['admin'])) {
+                        ?>
+                        <li class="nav-item mt-2">
+                            <a class="nav-link" href="../admin/admin_login.php"><span class="fa fa-user-circle"></span>
+                                Login</a>
+                        </li>
+                        <?php
+
+                    } else {
+                        ?>
+
+                        <li class="nav-item dropdown mt-2">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                <?php
+
+                                $username = $_SESSION['admin']['username'];
+                                echo $username; ?>
+
+                                <img src="../admin/<?php echo $user_image = $_SESSION['admin']['user_image']; ?>"
+                                     style="width: 70px;height:70px;border-radius:50%" alt="">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="../admin/logout.php">Logout</a>
+                            </div>
+                        </li>
+                        <?php
+                    }
+                    ?>
+                    </a>
+
+                </ul>
             </div>
         </div>
-        <div class="clear">
-        </div>
-        <div class="grid_12">
-            <ul class="nav main">
-                <li class="ic-dashboard"><a href="AddProduct.php"><span>Add Product</span></a> </li>
-                <li class="ic-form-style"><a href="javascript:"><span>Controls</span></a>
-                    <ul>
-                        <li><a href="form-controls.html">Forms</a> </li>
-                        <li><a href="buttons.html">Buttons</a> </li>
-                        <li><a href="form-controls.html">Full Page Example</a> </li>
-                        <li><a href="table.html">Page with Sidebar Example</a> </li>
-                    </ul>
-                </li>
-                <li class="ic-typography"><a href="typography.html"><span>Typography</span></a></li>
-                <li class="ic-charts"><a href="charts.html"><span>Charts & Graphs</span></a></li>
-                <li class="ic-grid-tables"><a href="table.html"><span>Data Table</span></a></li>
-                <li class="ic-gallery dd"><a href="javascript:"><span>Image Galleries</span></a>
-                    <ul>
-                        <li><a href="image-gallery.html">Pretty Photo</a> </li>
-                        <li><a href="gallery-with-filter.html">Gallery with Filter</a> </li>
-                    </ul>
-                </li>
-                <li class="ic-notifications"><a href="notifications.html"><span>Notifications</span></a></li>
-
-            </ul>
-        </div>
+    </nav>
+</header>
