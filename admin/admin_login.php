@@ -62,16 +62,15 @@ if (isset($_POST["submit1"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/vendor/login.css">
     <title>User | Entrance</title>
 </head>
 <body>
 <h2>Users Entrance</h2>
-<div class="container" id="container">
+<div class="login-page-container" id="container">
     <div class="form-container sign-up-container">
         <?php
         if (isset($_POST["submit"])) {
-
             $username = trim($_POST["username"]);
             $email = trim($_POST["email"]);
             $password = trim($_POST["password"]);
@@ -93,7 +92,7 @@ if (isset($_POST["submit1"])) {
             $r3 = md5($r3);
             $dst = "./User_Images/" . $r3 . $filename;
             $user_image = "User_Images" . $r3 . $filename;
-            move_uploaded_file($_FILES['image']['tmp_name'],$dst);
+            move_uploaded_file($_FILES['image']['tmp_name'], $dst);
 
             $insertQuery = "insert into users(username,email,password,fulladdress,phoneNo,city,user_image,Role)
                             VALUES ('$username','$email','$password','$fullAddress','$phoneNo','$city','$user_image','$Role')";
