@@ -6,7 +6,7 @@ require_once 'header.php'
     <div class="col-md-9">
 
     <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-hover table-striped">
     <thead>
     <tr class="bg-dark text-white text-center">
         <th>Image</th>
@@ -35,8 +35,8 @@ require_once 'header.php'
             <td><?php echo $value['pro_total']; ?></td>
 
             <td><?php echo $value['user_id']; ?></td>
-            <td><a href="uncomplete.php?id=<?php echo $value['id']; ?>" class="btn btn-danger">Make UnComplete</a></td>
-            <td><a href="./DeleteOrder.php?id=<?php echo $value['id']; ?>" name="delete">Delete</a></td>
+            <td><a href="uncomplete.php?id=<?php echo $value['id']; ?>" class="btn btn-warning">Make UnComplete</a></td>
+            <td><a href="./DeleteOrder.php?id=<?php echo $value['id']; ?>" name="delete" class="btn btn-danger"><span class="fa fa-trash"></span></a></td>
         </tr>
         </tbody>
 
