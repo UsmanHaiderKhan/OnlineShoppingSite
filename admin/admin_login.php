@@ -13,7 +13,7 @@ if (isset($_POST["submit1"])) {
     ));
 
     if ($statement->rowCount() > 0) {
-        $sqls = "select * from users";
+        $sqls = "select * from users where email='$email' ";
         $statements = $conn->prepare($sqls);
         $statements->execute();
         foreach ($statements as $value) {
@@ -25,25 +25,23 @@ if (isset($_POST["submit1"])) {
             $city = $value['city'];
             $user_image = $value['user_image'];
             $role = $value['Role'];
-
-            $user_info = array(
-                'user_id' => $user_id,
-                'username' => $username,
-                'email' => $email,
-                'fullAddress' => $fullAddress,
-                'phoneNo' => $phoneNo,
-                'city' => $city,
-                'user_image' => $user_image,
-                'role' => $role,
-
-            );
-
-            $_SESSION['admin'] = $user_info;
         }
+        $user_info = array(
+            'user_id' => $user_id,
+            'username' => $username,
+            'email' => $email,
+            'fullAddress' => $fullAddress,
+            'phoneNo' => $phoneNo,
+            'city' => $city,
+            'user_image' => $user_image,
+            'role' => $role,
 
+        );
+
+        $_SESSION['admin'] = $user_info;
         if ($role == "User") {
             echo '<script>window.location="../userpanel/AdvCart.php"</script>';
-        } elseif ($role == 'Admin') {
+        } else {
             echo ' <script>window.location = "dashboard.php";
         </script>';
 
@@ -91,8 +89,8 @@ if (isset($_POST["submit1"])) {
             $r3 = $r1 . $r2;
             $r3 = md5($r3);
             $dst = "./User_Images/" . $r3 . $filename;
-            $user_image = "User_Images" . $r3 . $filename;
-            move_uploaded_file($_FILES['image']['tmp_name'], $dst);
+            $dst = "User_Images" . $r3 . $filename;
+            move_uploaded_file($_FILES['user_image']['tmp_name'], $dst);
 
             $insertQuery = "insert into users(username,email,password,fulladdress,phoneNo,city,user_image,Role)
                             VALUES ('$username','$email','$password','$fullAddress','$phoneNo','$city','$user_image','$Role')";
